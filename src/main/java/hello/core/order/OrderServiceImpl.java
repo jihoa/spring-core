@@ -6,6 +6,12 @@ import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
 
+/**
+* @date : 2020-09-26
+* @see :
+ *  주문 생성 요청이 오면, 회원 정보를 조회하고, 할인 정책을 적용한 다음 주문 객체를 생성해서 반환한다.
+ *  메모리 회원 리포지토리와, 고정 금액 할인 정책을 구현체로 생성한다.
+**/
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository = new MemoryMemberRepository();
