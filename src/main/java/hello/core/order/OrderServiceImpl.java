@@ -2,6 +2,7 @@ package hello.core.order;
 
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
+import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
@@ -13,9 +14,15 @@ import hello.core.member.MemoryMemberRepository;
  *  메모리 회원 리포지토리와, 고정 금액 할인 정책을 구현체로 생성한다.
 **/
 public class OrderServiceImpl implements OrderService {
-
+    /**
+     * 문제 상황 : 할인 정책을 바꾼다면 어떻게 될까? 정액할인 -> 정률할인
+     * 문제점 :
+     *       1. OrderService는 추상(인터페이스) 뿐만 아니라 구현 클래스에도 의존하고 있다. (DIP 위반)
+     *       2. 따라서 정책을 변경하는 순간 OrderServiceImpl의 코드도 함께 변경해야 한다. (OCP 위반)
+     */
     private final MemberRepository memberRepository = new MemoryMemberRepository();
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
+    //private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
 
     /**
      * @see :
