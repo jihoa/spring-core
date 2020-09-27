@@ -19,9 +19,12 @@ public class OrderServiceImpl implements OrderService {
      * 문제점 :
      *       1. OrderService는 추상(인터페이스) 뿐만 아니라 구현 클래스에도 의존하고 있다. (DIP 위반)
      *       2. 따라서 정책을 변경하는 순간 OrderServiceImpl의 코드도 함께 변경해야 한다. (OCP 위반)
+     * 해결 방안 :
+     *       1. 인터페이스에만 의존하도록 변경한다. -> But, 구현체가 없는 데 어떻게 코드를 실행할 수 있을까? (NullPointException)
+     *       2. 누군가 DiscountPolicy의 구현 객체를 대신 생성하고 주입해주어야 한다.
      */
     private final MemberRepository memberRepository = new MemoryMemberRepository();
-    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
+    private final DiscountPolicy discountPolicy;
     //private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
 
     /**
