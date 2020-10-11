@@ -3,6 +3,7 @@ package hello.core.order;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
+import org.springframework.stereotype.Component;
 
 
 /**
@@ -19,6 +20,7 @@ import hello.core.member.MemberRepository;
  *       1. 인터페이스에만 의존하도록 변경한다. -> But, 구현체가 없는 데 어떻게 코드를 실행할 수 있을까? (NullPointException)
  *       2. 누군가 DiscountPolicy의 구현 객체를 대신 생성하고 주입해주어야 한다.
  **/
+@Component
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository;
