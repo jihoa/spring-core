@@ -25,19 +25,15 @@ import org.springframework.stereotype.Component;
 public class OrderServiceImpl implements OrderService {
 
     //필드 주입 - 필드 주입은 외부에서 변경이 불가능하여 테스트하기에 힘든 단점이 있다. -> 테스트코드를 제외하고선 안쓰는게 좋다
-    private  MemberRepository memberRepository;
-    private  DiscountPolicy discountPolicy;
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
 
+    // public OrderServiceImpl(){MemberRepository memberRepository, DiscountPolicy discountPolicy) }
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
 
-    //일반 메서드 주입 - 한번에 여러 필드를 주입 받을 수 있다. 일반적으로 잘 사용 x
-    public void init(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
     /**
      * @see :
      * 단일 책임 원칙을 잘 지킨 부분! OrderService의 입장에서 할인에 대한 부분은 DiscountPolicy에 모두 위임하고 있다.
