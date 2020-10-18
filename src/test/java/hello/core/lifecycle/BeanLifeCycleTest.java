@@ -22,7 +22,7 @@ class BeanLifeCycleTest {
         @Bean
         public NetworkClient networkClient() {
             NetworkClient networkClient = new NetworkClient();
-            networkClient.setUrl("http://www.hejitest.com");
+            networkClient.setUrl("http://www.henjitest.com");
             return networkClient;
         }
     }
