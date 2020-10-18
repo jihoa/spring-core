@@ -1,6 +1,7 @@
 package hello.core.common;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -9,7 +10,7 @@ import java.util.UUID;
 
 //Log처리는 스프링 인터셉터로 구현하는 것이 더 적절하다
 @Component
-@Scope(value = "request")
+@Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class MyLogger {
     private String uuid;
     private String requestURL;
