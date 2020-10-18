@@ -19,7 +19,8 @@ class BeanLifeCycleTest {
 
     @Configuration
     static class LifeCycleConfig {
-        @Bean
+        //@Bean의 destroyMethod의 기본값은 inferred로 close나 destroy라는 이름이 있으면 자동으로 호출한다. 추론기능을 사용하기 싫으면 공백("")으로 지정하면 된다.
+        @Bean(initMethod = "init", destroyMethod="close")
         public NetworkClient networkClient() {
             NetworkClient networkClient = new NetworkClient();
             networkClient.setUrl("http://www.henjitest.com");
